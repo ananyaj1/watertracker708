@@ -41,6 +41,8 @@ dependencies:
   google_fonts: ^2.1.0
   wave: ^0.2.2
   percent_indicator: ^4.2.2
+  firebase_database: ^9.1.0
+  flutter_emoji: ^2.4.0
 
 dev_dependencies:
   flutter_test:

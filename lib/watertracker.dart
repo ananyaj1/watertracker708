@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:water_tracker/user/userprofile.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -16,6 +18,20 @@ class _WaterTrackerState extends State<WaterTracker> {
   var heightThree = .8;
   var percent = 0.0;
   Color? progressColor = Colors.cyan;
+
+  void _onItemTapped(index) {
+    if (index == 0) {
+      Navigator.of(context).push(
+        CupertinoPageRoute(
+          fullscreenDialog: true,
+          builder: (context) {
+            return const UserProfilePage();
+          },
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,12 +82,12 @@ class _WaterTrackerState extends State<WaterTracker> {
                 MaterialButton(
                   onPressed: () {
                     setState(() {
-                      heightOne -= .1;
-                      heightTwo -= .1;
-                      heightThree -= .1;
-                      if (percent != 1.0) {
+                      if (percent != 100.0) {
                         percent += 10.0;
                         percent.ceil();
+                        heightOne -= .1;
+                        heightTwo -= .1;
+                        heightThree -= .1;
                       }
                       if (percent >= 50.0) {
                         progressColor = Colors.black;
@@ -93,12 +109,12 @@ class _WaterTrackerState extends State<WaterTracker> {
                 MaterialButton(
                   onPressed: () {
                     setState(() {
-                      heightOne += .1;
-                      heightTwo += .1;
-                      heightThree += .1;
                       if (percent != 0.0) {
                         percent -= 10.0;
                         percent.ceil();
+                        heightOne += .1;
+                        heightTwo += .1;
+                        heightThree += .1;
                       }
                       if (percent < 50.0) {
                         progressColor = Colors.cyan;
@@ -120,19 +136,26 @@ class _WaterTrackerState extends State<WaterTracker> {
                       height: 60,
                       width: 60),
                 ),
-                /*WaterOutlineButton(
-                  text: 'Press me',
-                  onPressed: () {
-                    setState(() {
-                      heightOne -= .08;
-                      heightTwo -= .08;
-                      heightThree -= .08;
-                    });
-                  })), */
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.verified_user),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+          ),
+        ],
+        currentIndex: 1,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
