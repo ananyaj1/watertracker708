@@ -10,6 +10,7 @@ class UserProfilePage extends StatefulWidget {
 }
 
 class _UserProfilePageState extends State<UserProfilePage> {
+  var goal = 8;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +48,34 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 SizedBox(
                   height: 60,
                 ),
-                Text(
-                  "8",
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade500,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ActionButton(
+                      chIcon: const Icon(Icons.add),
+                      onPressed: () {
+                        setState(() {
+                          goal += 1;
+                        });
+                      },
+                    ),
+                    Text(
+                      goal.toString(),
+                      style: TextStyle(
+                        fontSize: 60,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                    ActionButton(
+                      chIcon: const Icon(Icons.remove),
+                      onPressed: () {
+                        setState(() {
+                          goal -= 1;
+                        });
+                      },
+                    ),
+                  ],
                 ),
                 Text(
                   "cups of water per day",
@@ -63,13 +85,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     color: Colors.grey.shade500,
                   ),
                 ),
-                SizedBox(height: 20),
-                WaterOutlineButton(
-                  text: 'Your Water Goal: ',
-                  onPressed: () {},
-                  active: false,
-                ),
+                SizedBox(height: 100),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.local_fire_department,
@@ -78,6 +96,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     SizedBox(width: 5),
                     Text(
                       "Goal Streak:",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.stacked_line_chart,
+                      color: Colors.yellow,
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "Today's Progress:",
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,

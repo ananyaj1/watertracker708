@@ -133,7 +133,7 @@ class _WaterTextFormFieldState extends State<WaterTextFormField> {
   }
 }
 
-// --------------------- KTP NEW PAGE FORM BUTTON ---------------------
+// --------------------- Water NEW PAGE FORM BUTTON ---------------------
 // Has a similar design to the text field, but opens a new page for input.
 class WaterNewPageFormButton extends StatelessWidget {
   final String label, hint;
@@ -272,14 +272,14 @@ class WaterOutlineButton extends StatelessWidget {
   }
 }
 
-// --------------------- KTP WELCOME BUTTON ---------------------
+// --------------------- Water WELCOME BUTTON ---------------------
 // Big button at the bottom of every page, usually labeled "Continue".
-class KTPWelcomeButton extends StatelessWidget {
+class WaterWelcomeButton extends StatelessWidget {
   final String text;
   final bool active, isProcessing;
   final Function() onPressed;
 
-  const KTPWelcomeButton(
+  const WaterWelcomeButton(
       {required this.text,
       required this.onPressed,
       this.active = true,
@@ -323,14 +323,40 @@ class KTPWelcomeButton extends StatelessWidget {
   }
 }
 
+// ______________________ Action button ________________________________
+class ActionButton extends StatelessWidget {
+  final Function() onPressed;
+  final Icon chIcon;
+  const ActionButton({Key? key, required this.onPressed, required this.chIcon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      elevation: 0,
+      highlightElevation: 0,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      height: 30,
+      onPressed: onPressed,
+      color: const Color(0xFFFFFFFF),
+      shape: const CircleBorder(),
+      // If isProcessing is true, display a white circular loading animation
+      // where the usual label text would be.
+      child: chIcon,
+    );
+  }
+}
+
 // --------------------- KTP PRIMARY LARGE BUTTON ---------------------
 // Big button at the bottom of every page, usually labeled "Continue".
-class KTPPrimaryLargeButton extends StatelessWidget {
+class WaterPrimaryLargeButton extends StatelessWidget {
   final String text;
   final bool active, isProcessing;
   final Function() onPressed;
 
-  const KTPPrimaryLargeButton(
+  const WaterPrimaryLargeButton(
       {required this.text,
       required this.onPressed,
       this.active = true,

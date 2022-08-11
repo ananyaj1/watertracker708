@@ -116,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                         SizedBox(
                           height: 50,
                         ),
-                        KTPPrimaryLargeButton(
+                        WaterPrimaryLargeButton(
                             text: "Continue",
                             active: _continueButtonActive,
                             isProcessing: _isProcessing,
