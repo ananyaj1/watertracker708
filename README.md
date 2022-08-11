@@ -1,4 +1,4 @@
-# water_tracker
+# WaterTracker
 
 Flutter project that should track daily water intake.
 
